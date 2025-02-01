@@ -1,24 +1,11 @@
-import { auth } from '$lib/server/auth';
 import { fail, redirect, type Actions } from '@sveltejs/kit';
-import type { PageServerLoad } from './$types';
 import { db } from '$lib/server/db';
 import { sessions, users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcrypt';
 
-export const load: PageServerLoad = async ({ cookies }) => {
-	const session = await auth(cookies);
-	if (session) {
-		redirect(302, '/todos');
-	}
-
-	return {
-		message: 'Hello World!'
-	};
-};
-
 export const actions = {
-	signup: async ({ request }) => {
+	signup: async ({ cookies, request }) => {
 		const data = await request.formData();
 
 		const username = data.get('username') as string;
@@ -61,10 +48,21 @@ export const actions = {
 			})
 			.returning();
 
-		await db.insert(sessions).values({
-			sessionToken: crypto.randomUUID(),
-			userId: user[0].id,
-			expires: new Date().toISOString()
+		const currentDate = new Date();
+		currentDate.setMonth(currentDate.getMonth() + 1); // 1 month from now
+		const expireDate = currentDate.toISOString();
+
+		const session = await db
+			.insert(sessions)
+			.values({
+				sessionToken: crypto.randomUUID(),
+				userId: user[0].id,
+				expires: expireDate
+			})
+			.returning();
+
+		cookies.set('session', session[0].sessionToken, {
+			path: '/'
 		});
 
 		redirect(302, '/todos');
