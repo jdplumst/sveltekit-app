@@ -1,26 +1,26 @@
 import { sqliteTable, text, integer } from 'drizzle-orm/sqlite-core';
 
-export const user = sqliteTable('user', {
+export const users = sqliteTable('user', {
 	id: integer('id').primaryKey(),
 	username: text('username').notNull(),
 	hashedPassword: text('hashed_password').notNull()
 });
 
-export const session = sqliteTable('session', {
+export const sessions = sqliteTable('session', {
 	id: text('id').primaryKey(),
 	sessionToken: text('session_token').notNull(),
 	userId: integer('user_id')
 		.notNull()
-		.references(() => user.id),
+		.references(() => users.id),
 	expires: text('expires').notNull()
 });
 
-export const todo = sqliteTable('todo', {
+export const todos = sqliteTable('todo', {
 	id: integer('id').primaryKey(),
 	title: text('title').notNull(),
 	userId: integer('user_id')
 		.notNull()
-		.references(() => user.id),
+		.references(() => users.id),
 	status: text('status').notNull(),
 	priority: text('priority').notNull()
 });
