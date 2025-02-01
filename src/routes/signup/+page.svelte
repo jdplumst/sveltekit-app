@@ -1,8 +1,5 @@
 <script lang="ts">
 	let { form } = $props();
-
-	let username = $state('');
-	let password = $state('');
 </script>
 
 <div class="flex min-h-screen flex-col bg-gradient-to-br from-orange-400 to-orange-600">
@@ -17,16 +14,11 @@
 						id="username"
 						name="username"
 						maxlength="20"
-						bind:value={username}
 						required
 						class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 shadow-sm
                    focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
 					/>
-					{#if form?.usernameMissing}<p class="text-red-500">The username field is required</p>{/if}
-					{#if form?.usernameLength}<p class="text-red-500">
-							The username must be between 3 and 20 characters
-						</p>{/if}
-					{#if form?.usernameExists}<p class="text-red-500">The username already exists</p>{/if}
+					{#if form?.username}<p class="text-red-500">{form?.error}</p>{/if}
 				</div>
 				<div>
 					<label for="password" class="block text-sm font-medium text-gray-700">Password</label>
@@ -35,15 +27,11 @@
 						id="password"
 						name="password"
 						maxlength="20"
-						bind:value={password}
 						required
 						class="mt-1 block w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm placeholder-gray-400 shadow-sm
                    focus:border-orange-500 focus:outline-none focus:ring-1 focus:ring-orange-500"
 					/>
-					{#if form?.passwordMissing}<p class="text-red-500">The username field is required</p>{/if}
-					{#if form?.passwordLength}<p class="text-red-500">
-							The username must be between 3 and 20 characters
-						</p>{/if}
+					{#if form?.password}<p class="text-red-500">{form?.error}</p>{/if}
 				</div>
 				<button
 					type="submit"
