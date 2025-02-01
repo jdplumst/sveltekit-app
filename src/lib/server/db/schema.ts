@@ -7,7 +7,7 @@ export const users = sqliteTable('user', {
 });
 
 export const sessions = sqliteTable('session', {
-	id: text('id').primaryKey(),
+	id: integer('id').primaryKey(),
 	sessionToken: text('session_token').notNull(),
 	userId: integer('user_id')
 		.notNull()

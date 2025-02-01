@@ -1,5 +1,5 @@
 CREATE TABLE `session` (
-	`id` text PRIMARY KEY NOT NULL,
+	`id` integer PRIMARY KEY NOT NULL,
 	`session_token` text NOT NULL,
 	`user_id` integer NOT NULL,
 	`expires` text NOT NULL,
