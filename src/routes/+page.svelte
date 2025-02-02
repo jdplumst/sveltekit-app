@@ -1,7 +1,3 @@
-<script lang="ts">
-	let { data } = $props();
-</script>
-
 <div class="bg-gradient-to-br from-orange-400 to-orange-600">
 	<main class="container mx-auto flex min-h-screen flex-col items-center justify-center px-4 py-16">
 		<h1 class="mb-4 text-center text-5xl font-bold">Todo App</h1>
