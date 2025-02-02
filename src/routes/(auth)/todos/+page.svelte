@@ -1,4 +1,5 @@
 <script lang="ts">
+	import Button from '$lib/components/ui/button/button.svelte';
 	import type { PageProps } from './$types';
 
 	let { data }: PageProps = $props();
@@ -36,9 +37,10 @@
 </script>
 
 <div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-600">
-	<div class="container mx-auto px-4 py-8">
+	<div class="container mx-auto flex flex-col items-center gap-5 px-4 py-8">
 		<h1 class="mb-6 flex justify-center text-3xl font-bold text-white">My Todos</h1>
-		<div class="rounded-lg bg-white p-6 shadow-md">
+		<Button variant="secondary">Add Todo</Button>
+		<div class="w-full rounded-lg bg-white p-6 shadow-md">
 			{#if data.todos.length === 0}
 				<p class="text-gray-500">No todos found. Start by adding a new todo!</p>
 			{:else}
