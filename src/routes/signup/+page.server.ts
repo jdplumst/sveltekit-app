@@ -3,6 +3,7 @@ import { db } from '$lib/server/db';
 import { sessions, users } from '$lib/server/db/schema';
 import { eq } from 'drizzle-orm';
 import bcrypt from 'bcrypt';
+import { env } from '$env/dynamic/private';
 
 export const actions = {
 	signup: async ({ cookies, request }) => {
@@ -62,7 +63,10 @@ export const actions = {
 			.returning();
 
 		cookies.set('session', session[0].sessionToken, {
-			path: '/'
+			path: '/',
+			maxAge: new Date(expireDate).getTime(),
+			httpOnly: true,
+			secure: env.NODE_ENV === 'production'
 		});
 
 		redirect(302, '/todos');
