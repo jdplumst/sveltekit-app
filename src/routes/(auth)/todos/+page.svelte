@@ -36,17 +36,19 @@
 	}
 </script>
 
-<div class="min-h-screen bg-gradient-to-br from-orange-400 to-orange-600">
+<main>
 	<div class="container mx-auto flex flex-col items-center gap-5 px-4 py-8">
-		<h1 class="mb-6 flex justify-center text-3xl font-bold text-white">My Todos</h1>
-		<Button variant="secondary">Add Todo</Button>
-		<div class="w-full rounded-lg bg-white p-6 shadow-md">
+		<h1 class="mb-6 flex justify-center text-3xl font-bold">My Todos</h1>
+		<Button>Add Todo</Button>
+		<div class="bg-secondary w-full rounded-lg p-6 shadow-md">
 			{#if data.todos.length === 0}
 				<p class="text-gray-500">No todos found. Start by adding a new todo!</p>
 			{:else}
 				<ul class="space-y-4">
 					{#each data.todos as todo (todo.id)}
-						<li class="flex items-center justify-between rounded-lg bg-gray-100 p-4">
+						<li
+							class="bg-muted-foreground flex items-center justify-between rounded-lg p-4 text-black"
+						>
 							<div class="flex items-center space-x-4">
 								<span class="font-medium">{todo.title}</span>
 								<span
@@ -56,7 +58,7 @@
 								</span>
 							</div>
 							<span
-								class={`rounded-full px-3 py-1 text-sm text-white ${getStatusColor(todo.status as Status)}`}
+								class={`rounded-full px-3 py-1 text-sm  ${getStatusColor(todo.status as Status)}`}
 							>
 								{todo.status}
 							</span>
@@ -66,4 +68,4 @@
 			{/if}
 		</div>
 	</div>
-</div>
+</main>

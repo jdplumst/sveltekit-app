@@ -30,5 +30,14 @@ export async function auth(event: RequestEvent) {
 		.get();
 	if (!user) return null;
 
+	const currentDate = new Date();
+	currentDate.setMonth(currentDate.getMonth() + 1); // 1 month from now
+	const newExpireDate = currentDate.toISOString();
+
+	await db
+		.update(sessions)
+		.set({ expires: newExpireDate })
+		.where(eq(sessions.sessionToken, sessionToken));
+
 	return user;
 }
