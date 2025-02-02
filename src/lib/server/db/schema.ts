@@ -8,7 +8,7 @@ export const users = sqliteTable('user', {
 
 export const sessions = sqliteTable('session', {
 	id: integer('id').primaryKey(),
-	sessionToken: text('session_token').notNull(),
+	sessionToken: text('session_token').notNull().unique(),
 	userId: integer('user_id')
 		.notNull()
 		.references(() => users.id),
@@ -21,6 +21,20 @@ export const todos = sqliteTable('todo', {
 	userId: integer('user_id')
 		.notNull()
 		.references(() => users.id),
-	status: text('status').notNull(),
-	priority: text('priority').notNull()
+	statusId: integer('status_id')
+		.notNull()
+		.references(() => statuses.id),
+	priorityId: integer('priority_id')
+		.notNull()
+		.references(() => priorities.id)
+});
+
+export const statuses = sqliteTable('status', {
+	id: integer('id').primaryKey(),
+	name: text('status').notNull()
+});
+
+export const priorities = sqliteTable('priority', {
+	id: integer('id').primaryKey(),
+	name: text('priority').notNull()
 });
