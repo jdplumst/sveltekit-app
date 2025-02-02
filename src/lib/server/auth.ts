@@ -1,10 +1,11 @@
 import { db } from '$lib/server/db';
 import { sessions, users } from '$lib/server/db/schema';
+import type { RequestEvent } from '@sveltejs/kit';
 import { eq } from 'drizzle-orm';
-import { redirect } from '@sveltejs/kit';
-import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ cookies }) => {
+export async function auth(event: RequestEvent) {
+	const { cookies } = event;
+
 	const sessionToken = cookies.get('session');
 	if (!sessionToken) return null;
 
@@ -29,5 +30,5 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
 		.get();
 	if (!user) return null;
 
-	redirect(302, '/todos');
-};
+	return user;
+}
