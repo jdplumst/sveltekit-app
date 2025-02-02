@@ -6,11 +6,11 @@ export const handle: Handle = async ({ event, resolve }) => {
 
 	if (event.route.id?.startsWith('/(auth)')) {
 		if (!user) {
-			redirect(302, '/');
+			redirect(303, '/');
 		}
 	} else {
 		if (user) {
-			redirect(302, '/todos');
+			redirect(303, '/todos');
 		}
 	}
 
