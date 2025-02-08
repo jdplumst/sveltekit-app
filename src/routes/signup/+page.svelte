@@ -6,7 +6,7 @@
 	<main class="container mx-auto flex flex-grow flex-col items-center justify-center px-4 py-16">
 		<div class="w-full max-w-md rounded-lg bg-white p-8 shadow-md">
 			<h1 class="mb-6 text-center text-3xl font-bold text-orange-500">Sign Up</h1>
-			<form method="POST" action="?/signup" class="space-y-4">
+			<form method="POST" action="?/signup" class="space-y-4 text-black">
 				<div>
 					<label for="username" class="block text-sm font-medium text-gray-700">Username</label>
 					<input
