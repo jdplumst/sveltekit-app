@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Button from '$lib/components/ui/button/button.svelte';
 	import type { PageProps } from './$types';
 	import type { Priority, Status } from '$lib/types';
 
@@ -32,10 +31,6 @@
 				return 'bg-gray-200 text-gray-800';
 		}
 	}
-
-	let title = $state('');
-	let status = $state('');
-	let priority = $state('');
 </script>
 
 <main>
@@ -69,4 +64,5 @@
 			{/if}
 		</div>
 	</div>
+	<p>{data.greeting}</p>
 </main>

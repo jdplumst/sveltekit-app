@@ -4,7 +4,7 @@ import { priorities, statuses, todos } from '$lib/server/db/schema';
 import { desc, eq } from 'drizzle-orm';
 import type { PageServerLoad } from './$types';
 
-export const load: PageServerLoad = async ({ locals, params }) => {
+export const load: PageServerLoad = async ({ locals }) => {
 	const user = locals.user;
 	if (!user) {
 		redirect(303, '/');

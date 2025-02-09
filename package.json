@@ -54,8 +54,11 @@
 	},
 	"dependencies": {
 		"@libsql/client": "^0.14.0",
+		"@trpc/client": "^10.45.2",
+		"@trpc/server": "^10.45.2",
 		"bcrypt": "^5.1.1",
 		"drizzle-orm": "^0.38.4",
-		"svelte-radix": "^2.0.1"
+		"svelte-radix": "^2.0.1",
+		"trpc-sveltekit": "^3.6.2"
 	}
 }
