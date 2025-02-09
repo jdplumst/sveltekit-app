@@ -64,5 +64,5 @@
 			{/if}
 		</div>
 	</div>
-	<p>{data.greeting}</p>
+	<p>{data.greeting.message}</p>
 </main>

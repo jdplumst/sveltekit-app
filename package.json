@@ -58,7 +58,9 @@
 		"@trpc/server": "^10.45.2",
 		"bcrypt": "^5.1.1",
 		"drizzle-orm": "^0.38.4",
+		"superjson": "^2.2.2",
 		"svelte-radix": "^2.0.1",
-		"trpc-sveltekit": "^3.6.2"
+		"trpc-sveltekit": "^3.6.2",
+		"trpc-transformer": "^3.2.2"
 	}
 }
