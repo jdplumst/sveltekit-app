@@ -5,7 +5,13 @@ import { appRouter } from '$lib/trpc/router';
 import { createTRPCHandle } from 'trpc-sveltekit';
 import { sequence } from '@sveltejs/kit/hooks';
 
-export const handleTRPC: Handle = createTRPCHandle({ router: appRouter, createContext });
+export const handleTRPC: Handle = createTRPCHandle({
+	router: appRouter,
+	createContext,
+	onError: ({ type, path, error }) => {
+		console.error(`Encountered error while trying to process ${type} @ ${path}:`, error);
+	}
+});
 
 export const handleOthers: Handle = async ({ event, resolve }) => {
 	event.locals.user = await auth(event);
